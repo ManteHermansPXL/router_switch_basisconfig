@@ -1,0 +1,90 @@
+Router1
+Current configuration : 1036 bytes
+!
+version 15.4
+no service timestamps log datetime msec
+no service timestamps debug datetime msec
+service password-encryption
+!
+hostname R1
+!
+!
+!
+enable secret 5 $1$mERr$9cTjUIEqNGurQiFU.ZeCi1
+!
+!
+!
+!
+!
+!
+ip cef
+no ipv6 cef
+!
+!
+!
+username mante secret 5 $1$mERr$Qi6ONwpllqVoE5wMQK/nR0
+!
+!
+!
+!
+!
+!
+!
+!
+ip domain-name pxl.be
+!
+!
+spanning-tree mode pvst
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0/0
+ip address 192.168.0.1 255.255.255.224
+duplex auto
+speed auto
+ipv6 address FE80::1 link-local
+ipv6 address 2001:DB8:ACAD:1::/64
+!
+interface GigabitEthernet0/0/1
+ip address 192.168.0.33 255.255.255.224
+duplex auto
+speed auto
+ipv6 address FE80::2 link-local
+ipv6 address 2001:DB8:ACAD:2::/64
+!
+interface Vlan1
+no ip address
+shutdown
+!
+ip classless
+!
+ip flow-export version 9
+!
+!
+!
+banner motd ^CNO ACCESS.^C
+!
+!
+!
+!
+line con 0
+password 7 0822455D0A16
+login
+!
+line aux 0
+!
+line vty 0 4
+password 7 0822455D0A16
+login local
+transport input ssh
+line vty 5 15
+password 7 0822455D0A16
+login local
+transport input ssh
+!
+!
+!
+end
